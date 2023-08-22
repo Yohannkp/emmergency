@@ -28,7 +28,6 @@ def ReponseHopitale(request,pk):
     requete = Requete.objects.get(id=pk)
 
     if requete.hopital == None:
-        requete.statut = "Acceptée"
         serializer = RequeteSerializer(instance=requete,data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -47,3 +46,10 @@ def requeteEnAttente(request,pk):
     requete = Requete.objects.get(id=pk)
     serialiser = RequeteSerializer(requete)
     return Response(serialiser.data)
+
+
+@api_view(['GET'])
+def ListesRequêtes(request):
+    produits = Requete.objects.all()
+    serializer = RequeteSerializer(produits,many = True)
+    return Response(serializer.data)

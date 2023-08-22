@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
         child: Row(
           children: [
             SideBar(),
-            Contenu(context,index_page)
+            Contenu(indice: index_page,)
           ],
         ),
       ),
